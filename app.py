@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation, PillowWriter  # 导入PillowWriter
 import io
 from PIL import Image
 
@@ -76,9 +76,12 @@ if name and birthday:
         # 创建动画（100帧，每帧50ms，总时长5秒）
         ani = FuncAnimation(fig, update, frames=101, interval=50, blit=True)
         
+        # 创建PillowWriter并指定格式
+        writer = PillowWriter(fps=20)  # 设置帧率
+        
         # 将动画保存到缓冲区
         buf = io.BytesIO()
-        ani.save(buf, format='png', writer='pillow', savefig_kwargs={'bbox_inches': 'tight'})
+        ani.save(buf, writer=writer, savefig_kwargs={'bbox_inches': 'tight'})
         buf.seek(0)
         
         # 显示动画

@@ -38,7 +38,7 @@ if name and birthday:
         ax.fill(x, y, color='pink', edgecolor='red', linewidth=2)
         
         # 添加文本（调整y值将文本放在爱心底部）
-        ax.text(0, -15, f'尊敬的VIP,小的为您服务！', 
+        ax.text(0, -20, f'尊敬的VIP,小的为您服务！', 
                 ha='center', va='center', fontsize=16, color='black')
         
         # 设置坐标轴范围和隐藏坐标轴
@@ -53,3 +53,4 @@ if name and birthday:
         st.error("生日不对哦~")
         st.stop()  # 停止程序
     
+

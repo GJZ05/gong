@@ -1,8 +1,6 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import PathPatch
-import matplotlib.path as mpath
 
 # 设置中文字体
 plt.rcParams["font.family"] = ["SimHei", "WenQuanYi Micro Hei", "Heiti TC"]
@@ -28,7 +26,7 @@ if name and birthday:
         st.success(f"你来啦，{name}VIP！")
         st.balloons()  # 添加庆祝动画
         
-        # 使用matplotlib绘制心形图案（替代turtle）
+        # 使用matplotlib绘制心形图案
         fig, ax = plt.subplots(figsize=(6, 6))
         
         # 生成心形曲线数据
@@ -39,13 +37,13 @@ if name and birthday:
         # 绘制心形并填充
         ax.fill(x, y, color='pink', edgecolor='red', linewidth=2)
         
-        # 添加文本
-        ax.text(0, -10, f'尊敬的VIP,小的为您服务！', 
+        # 添加文本（调整y值将文本放在爱心底部）
+        ax.text(0, -15, f'尊敬的VIP,小的为您服务！', 
                 ha='center', va='center', fontsize=16, color='black')
         
         # 设置坐标轴范围和隐藏坐标轴
         ax.set_xlim(-20, 20)
-        ax.set_ylim(-20, 20)
+        ax.set_ylim(-20, 15)  # 调整y轴范围使爱心显示更完整
         ax.axis('off')
         
         # 在Streamlit中显示图形
@@ -54,3 +52,4 @@ if name and birthday:
     else:
         st.error("生日不对哦~")
         st.stop()  # 停止程序
+    
